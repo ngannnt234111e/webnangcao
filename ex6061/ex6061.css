@@ -1,0 +1,149 @@
+.cookie-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.cookie-header {
+  background: linear-gradient(135deg, #ff6b35, #f7c59f);
+  color: white;
+  padding: 24px 32px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+}
+
+.cookie-header h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cookie-header p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.cookie-header code {
+  background: rgba(255,255,255,0.25);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.cookie-body {
+  background: #fff;
+  border: 1px solid #ffe0cc;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.1);
+}
+
+.btn-group-cookie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.btn-cookie {
+  flex: 1;
+  min-width: 160px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-cookie:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-cookie:not(:disabled):hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn-create  { background: #28a745; color: #fff; }
+.btn-read    { background: #007bff; color: #fff; }
+.btn-limited { background: #fd7e14; color: #fff; }
+.btn-clear   { background: #dc3545; color: #fff; }
+
+.result-box {
+  background: #f8f9fa;
+  border: 1.5px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.result-box h4 {
+  margin: 0 0 10px;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-content {
+  font-size: 14px;
+  color: #212529;
+  line-height: 1.7;
+}
+
+.loading-box {
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.info-section h4 {
+  font-size: 15px;
+  color: #343a40;
+  margin-bottom: 12px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.info-table th {
+  background: #ff6b35;
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.info-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.info-table tr:nth-child(even) td {
+  background: #fff5f0;
+}
+
+.info-table code {
+  background: #ffe8d6;
+  color: #c0392b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}

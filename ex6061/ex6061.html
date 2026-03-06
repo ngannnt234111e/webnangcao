@@ -1,0 +1,65 @@
+<div class="cookie-wrapper">
+  <div class="cookie-header">
+    <h2>Exercise 60 &amp; 61 – Cookies Programming</h2>
+    <p>Using <code>cookie-parser</code> to Initialize, Add, Retrieve and Delete Cookies</p>
+  </div>
+
+  <div class="cookie-body">
+    <!-- Buttons -->
+    <div class="btn-group-cookie">
+      <button class="btn-cookie btn-create" (click)="createCookie()" [disabled]="loading">
+        <span class="icon">🍪</span> Add Cookies
+      </button>
+      <button class="btn-cookie btn-read" (click)="readCookie()" [disabled]="loading">
+        <span class="icon">📖</span> Read Cookies
+      </button>
+      <button class="btn-cookie btn-limited" (click)="createLimitedCookie()" [disabled]="loading">
+        <span class="icon">⏱️</span> Add Limited Cookies
+      </button>
+      <button class="btn-cookie btn-clear" (click)="clearCookie()" [disabled]="loading">
+        <span class="icon">🗑️</span> Delete Cookie (account)
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-box" *ngIf="message">
+      <h4>Result:</h4>
+      <div class="result-content" [innerHTML]="message"></div>
+    </div>
+
+    <div class="loading-box" *ngIf="loading">
+      <span>Đang kết nối server...</span>
+    </div>
+
+    <!-- Description -->
+    <div class="info-section">
+      <h4>Mô tả các API:</h4>
+      <table class="info-table">
+        <thead>
+          <tr>
+            <th>API Endpoint</th>
+            <th>Chức năng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET /create-cookie</code></td>
+            <td>Tạo cookies: username, password, account (JsonObject)</td>
+          </tr>
+          <tr>
+            <td><code>GET /read-cookie</code></td>
+            <td>Đọc và hiển thị các cookies đã lưu</td>
+          </tr>
+          <tr>
+            <td><code>GET /create-limited-cookie</code></td>
+            <td>Tạo cookies có thời hạn (360000ms) bằng expires và maxAge</td>
+          </tr>
+          <tr>
+            <td><code>GET /clear-cookie</code></td>
+            <td>Xóa cookie "account"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
