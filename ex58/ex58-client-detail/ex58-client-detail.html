@@ -1,0 +1,25 @@
+<div class="loading" *ngIf="loading">
+  <div class="spinner"></div>
+</div>
+
+<div class="detail-page" *ngIf="!loading && fashion">
+  <button class="btn-back" (click)="goBack()">&#8592; Back to Fashion</button>
+
+  <article class="detail-article">
+    <h1 class="detail-title">{{ fashion.fashion_title }}</h1>
+    <span class="detail-style">{{ fashion.fashion_style }}</span>
+
+    <div class="detail-body" [innerHTML]="fashion.fashion_details"></div>
+
+    <img
+      class="detail-img"
+      [src]="fashion.thumbnail || 'https://via.placeholder.com/800x500?text=No+Image'"
+      [alt]="fashion.fashion_title"
+    />
+  </article>
+</div>
+
+<div class="not-found" *ngIf="!loading && !fashion">
+  <p>Fashion not found.</p>
+  <button class="btn-back" (click)="goBack()">&#8592; Back</button>
+</div>

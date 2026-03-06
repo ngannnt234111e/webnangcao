@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.client-page {
+  font-family: 'Georgia', serif;
+  background: #fff;
+  min-height: 100vh;
+  color: #222;
+}
+
+/* ── Top search bar ── */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px 40px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+
+.search-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-group input[type='text'] {
+  padding: 7px 14px;
+  border: 1px solid #bbb;
+  font-size: 13px;
+  width: 200px;
+  outline: none;
+}
+
+.search-group select {
+  padding: 7px 10px;
+  border: 1px solid #bbb;
+  font-size: 13px;
+  background: #fff;
+  outline: none;
+}
+
+.btn-search {
+  padding: 7px 20px;
+  background: #222;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-search:hover {
+  background: #444;
+}
+
+/* ── Content ── */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+/* ── Style section heading ── */
+.style-heading {
+  text-align: center;
+  margin: 40px 0 20px;
+  position: relative;
+}
+
+.style-heading span {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #222;
+  background: #fff;
+  padding: 0 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.style-heading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #ccc;
+}
+
+/* ── Fashion grid ── */
+.fashion-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 10px;
+}
+
+/* ── Fashion card ── */
+.fashion-card {
+  cursor: pointer;
+}
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #f0f0f0;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.fashion-card:hover .card-img-wrap img {
+  transform: scale(1.04);
+}
+
+.card-icon {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.card-title {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #222;
+  font-family: 'Arial', sans-serif;
+}
+
+.fashion-card:hover .card-title {
+  text-decoration: underline;
+}
+
+/* ── Loading ── */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #ddd;
+  border-top-color: #222;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 60px 0;
+  font-size: 15px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .fashion-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .fashion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-bar {
+    padding: 12px 16px;
+  }
+
+  .search-group input[type='text'] {
+    width: 140px;
+  }
+}

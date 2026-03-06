@@ -1,0 +1,51 @@
+<div class="client-page">
+
+  <!-- Top search bar -->
+  <div class="top-bar">
+    <div class="search-group">
+      <input
+        type="text"
+        [(ngModel)]="searchStyle"
+        placeholder="Try Style name..."
+        (keyup.enter)="onSearch()"
+      />
+      <select [(ngModel)]="selectedStyle" (change)="onStyleChange()">
+        <option value="">-- All Styles --</option>
+        <option *ngFor="let s of styles" [value]="s">{{ s }}</option>
+      </select>
+      <button class="btn-search" (click)="onSearch()">SEARCH</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Fashion sections grouped by style -->
+  <div class="content" *ngIf="!loading">
+    <div *ngIf="groupedFashions.length === 0" class="empty-state">
+      <p>No fashions found.</p>
+    </div>
+
+    <div class="style-section" *ngFor="let group of groupedFashions">
+      <div class="style-heading">
+        <span>{{ group.style | uppercase }}</span>
+      </div>
+
+      <div class="fashion-grid">
+        <div class="fashion-card" *ngFor="let f of group.items" (click)="viewDetail(f._id!)">
+          <div class="card-img-wrap">
+            <img
+              [src]="f.thumbnail || 'https://via.placeholder.com/400x400?text=No+Image'"
+              [alt]="f.fashion_title"
+            />
+            <div class="card-icon">&#9654;</div>
+          </div>
+          <p class="card-title">{{ f.fashion_title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
