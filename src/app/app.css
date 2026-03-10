@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f0f4f8;
+  overflow: hidden;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.part-a {
+  width: 150px;
+  background: linear-gradient(180deg, #1a237e, #283593);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.part-b {
+  background: #1a237e;
+  color: white;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1000;
+}
+
+.part-c {
+  flex: 1;
+  padding: 20px;
+  background: #f0f4f8;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

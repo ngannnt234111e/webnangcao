@@ -1,0 +1,41 @@
+.student-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  animation: bounceUpDown 3s ease-in-out infinite;
+  padding: 10px 5px;
+}
+
+@keyframes bounceUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.avatar-box {
+  font-size: 50px;
+  margin-bottom: 10px;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+}
+
+.student-id {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.student-name {
+  font-size: 10px;
+  color: #e8eaf6;
+  line-height: 1.3;
+}

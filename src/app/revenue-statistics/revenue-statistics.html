@@ -1,0 +1,100 @@
+<div class="stats-page">
+  <div class="page-header">
+    <h2>📊 Thống Kê Doanh Thu</h2>
+    <button (click)="goBack()" class="btn-back">⬅ Quay lại</button>
+  </div>
+
+  <!-- Nhân viên đang đăng nhập -->
+  <div class="employee-badge">
+    👔 Nhân viên: <strong>{{ employeeName }}</strong>
+  </div>
+
+  <!-- Bộ lọc năm -->
+  <div class="filter-bar">
+    <label>📅 Năm thống kê:</label>
+    <select [(ngModel)]="selectedYear">
+      @for (y of years; track y) {
+        <option [value]="y">{{ y }}</option>
+      }
+    </select>
+    <button (click)="loadStats()" class="btn-filter">🔍 Xem thống kê</button>
+  </div>
+
+  <!-- Tổng quan -->
+  @if (totalRevenue > 0) {
+    <div class="summary-box">
+      <div class="summary-item">
+        <span class="s-label">📦 Số danh mục</span>
+        <span class="s-value">{{ stats.length }}</span>
+      </div>
+      <div class="summary-item highlight">
+        <span class="s-label">💰 Tổng doanh thu {{ selectedYear }}</span>
+        <span class="s-value">{{ formatPrice(totalRevenue) }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">🧾 Đơn hàng đã TT</span>
+        <span class="s-value">{{ paidOrders.length }}</span>
+      </div>
+    </div>
+  }
+
+  <!-- Bảng doanh thu theo danh mục -->
+  <h3 class="section-title">📂 Doanh Thu Theo Danh Mục – Năm {{ selectedYear }}</h3>
+
+  @if (stats.length > 0) {
+    <table class="stats-table">
+      <thead>
+        <tr><th>#</th><th>Danh mục</th><th>Doanh thu</th><th>Tỷ lệ %</th><th>Biểu đồ</th></tr>
+      </thead>
+      <tbody>
+        @for (s of stats; track s.CategoryName; let i = $index) {
+          <tr (click)="selectRow(s.CategoryName)" [class.selected-row]="isSelected(s.CategoryName)">
+            <td>{{ i + 1 }}</td>
+            <td><strong>{{ s.CategoryName }}</strong></td>
+            <td class="revenue">{{ formatPrice(s.Revenue) }}</td>
+            <td>{{ getPercentage(s.Revenue) }}%</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar" [style.width]="getPercentage(s.Revenue) + '%'"></div>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="2"><strong>Tổng cộng</strong></td>
+          <td class="revenue" colspan="3"><strong>{{ formatPrice(totalRevenue) }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  } @else {
+    <div class="no-data">Không có dữ liệu doanh thu cho năm {{ selectedYear }}.</div>
+  }
+
+  <!-- Danh sách đơn hàng đã thanh toán -->
+  <div class="orders-section">
+    <div class="orders-header" (click)="toggleOrders()">
+      <h3>🧾 Danh Sách Đơn Hàng Đã Thanh Toán ({{ paidOrders.length }}) {{ showOrders ? '▲' : '▼' }}</h3>
+    </div>
+    @if (showOrders && paidOrders.length > 0) {
+      <table class="orders-table">
+        <thead>
+          <tr><th>#</th><th>Mã đơn</th><th>Khách hàng</th><th>Ngày đặt</th><th>Tổng tiền</th><th>Trạng thái</th></tr>
+        </thead>
+        <tbody>
+          @for (o of paidOrders; track o.OrderId; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td><code>{{ o.OrderId }}</code></td>
+              <td>{{ o.CustomerId }}</td>
+              <td>{{ formatDate(o.OrderDate) }}</td>
+              <td class="revenue">{{ formatPrice(o.TotalAmount) }}</td>
+              <td><span class="badge-paid">✅ Đã TT</span></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

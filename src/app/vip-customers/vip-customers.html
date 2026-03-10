@@ -1,0 +1,69 @@
+<div class="vip-page">
+  <div class="page-header">
+    <h2>⭐ Khách Hàng VIP</h2>
+    <button (click)="goBack()" class="btn-back">⬅ Quay lại</button>
+  </div>
+
+  <!-- Q13: badge nhân viên đang xem -->
+  <div class="employee-badge">
+    👔 Đang đăng nhập: <strong>{{ employeeName }}</strong>
+  </div>
+
+  <!-- Q12: Bộ lọc Top N -->
+  <div class="filter-bar">
+    <label>🏆 Hiển thị Top:</label>
+    <input type="number" [(ngModel)]="topN" min="1" max="50" />
+    <span>khách hàng</span>
+    <button (click)="loadVip()" class="btn-filter">⭐ Xem VIP</button>
+  </div>
+
+  <!-- Tổng quan -->
+  @if (vipList.length > 0) {
+    <div class="summary-box">
+      <div class="summary-item">
+        <span class="s-label">👥 Số khách VIP</span>
+        <span class="s-value">{{ vipList.length }}</span>
+      </div>
+      <div class="summary-item highlight">
+        <span class="s-label">💰 Tổng chi tiêu Top {{ topN }}</span>
+        <span class="s-value">{{ formatPrice(totalPurchase) }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">🥇 Khách chi nhiều nhất</span>
+        <span class="s-value name">{{ vipList[0]?.CustomerName }}</span>
+      </div>
+    </div>
+  }
+
+  <!-- Q12: Bảng danh sách VIP -->
+  @if (vipList.length > 0) {
+    <table class="vip-table">
+      <thead>
+        <tr>
+          <th>Hạng</th>
+          <th>Tên khách hàng</th>
+          <th>Email</th>
+          <th>Điện thoại</th>
+          <th>Địa chỉ</th>
+          <th>Tổng chi tiêu</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (v of vipList; track v.CustomerId; let i = $index) {
+          <tr (click)="selectRow(v.CustomerId)"
+              [class.selected-row]="isSelected(v.CustomerId)"
+              [class]="getRankClass(i)">
+            <td class="rank-cell">{{ getRankBadge(i) }}</td>
+            <td><strong>{{ v.CustomerName }}</strong></td>
+            <td>{{ v.Email }}</td>
+            <td>{{ v.Phone }}</td>
+            <td>{{ v.Address }}</td>
+            <td class="total-price">{{ formatPrice(v.TotalPurchase) }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <div class="no-data">Chưa có dữ liệu khách hàng VIP.</div>
+  }
+</div>

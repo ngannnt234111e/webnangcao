@@ -1,0 +1,42 @@
+.vip-page { padding: 10px; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.page-header h2 { color: #1a237e; font-size: 22px; }
+.btn-back { background: #e0e0e0; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+.btn-back:hover { background: #bdbdbd; }
+
+/* Q13 – badge nhân viên */
+.employee-badge { background: #e8eaf6; border-left: 4px solid #1a237e; padding: 8px 14px; border-radius: 4px; margin-bottom: 14px; font-size: 14px; color: #1a237e; }
+
+/* Filter bar */
+.filter-bar { display: flex; align-items: center; gap: 10px; background: white; padding: 14px 18px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.filter-bar label { font-weight: bold; color: #1a237e; font-size: 14px; }
+.filter-bar input { padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px; width: 70px; font-size: 14px; }
+.filter-bar span { color: #555; font-size: 14px; }
+.btn-filter { background: #f9a825; color: #1a237e; border: none; padding: 8px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-filter:hover { background: #f57f17; color: white; }
+
+/* Summary cards */
+.summary-box { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.summary-item { flex: 1; min-width: 150px; background: white; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 6px; }
+.summary-item.highlight { border: 2px solid #f9a825; }
+.s-label { font-size: 12px; color: #888; }
+.s-value { font-size: 20px; font-weight: bold; color: #1a237e; }
+.s-value.name { font-size: 14px; }
+.summary-item.highlight .s-value { color: #e53935; }
+
+/* VIP table */
+.vip-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.vip-table thead { background: #1a237e; color: white; }
+.vip-table th { padding: 12px 14px; text-align: left; font-size: 14px; }
+.vip-table td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+.vip-table tr:hover td { background: #f5f5f5; cursor: pointer; }
+.vip-table tr.selected-row td { background: #fffde7; }
+
+/* Rank styles */
+.rank-cell { font-size: 20px; text-align: center; }
+.rank-gold td { background: #fffde7; }
+.rank-silver td { background: #fafafa; }
+.rank-bronze td { background: #fff8f5; }
+
+.total-price { color: #e53935; font-weight: bold; font-size: 15px; }
+.no-data { text-align: center; color: #888; padding: 50px; background: white; border-radius: 10px; font-size: 16px; }

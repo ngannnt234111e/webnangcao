@@ -1,0 +1,66 @@
+<div class="shopping-page">
+  <h2>🛍️ Danh Sách Sản Phẩm - Panda Store</h2>
+
+  <div class="search-bar">
+    <div class="search-row">
+      <div class="search-group">
+        <label>Tìm theo giá:</label>
+        <input type="number" [(ngModel)]="minPrice" placeholder="Giá min" />
+        <span>-</span>
+        <input type="number" [(ngModel)]="maxPrice" placeholder="Giá max" />
+        <button (click)="searchByPrice()" class="btn-search">🔍 Tìm</button>
+      </div>
+      <div class="search-group">
+        <label>Model:</label>
+        <input type="text" [(ngModel)]="searchModel" placeholder="Nhập model..." />
+        <button (click)="searchByModel()" class="btn-search">🔍 Tìm</button>
+      </div>
+      <div class="search-group">
+        <label>Hãng:</label>
+        <input type="text" [(ngModel)]="searchMadeBy" placeholder="Nhập hãng..." />
+        <button (click)="searchByMadeBy()" class="btn-search">🔍 Tìm</button>
+      </div>
+      <div class="search-group">
+        <label>Sắp xếp giá:</label>
+        <select [(ngModel)]="sortOrder">
+          <option value="asc">Thấp → Cao</option>
+          <option value="desc">Cao → Thấp</option>
+        </select>
+        <button (click)="sortProducts()" class="btn-sort">↕️ Sort</button>
+        <button (click)="resetSearch()" class="btn-reset">🔄 Reset</button>
+      </div>
+    </div>
+  </div>
+
+  @if (message) {
+    <div class="message-box">{{ message }}</div>
+  }
+
+  <div class="product-grid">
+    @for (p of products; track p.ProductId) {
+      <div class="product-card" [class.selected]="isSelected(p)" (click)="selectProduct(p)">
+        <div class="product-img">
+          <img [src]="getProductImage(p)" [alt]="p.ProductName" />
+        </div>
+        <div class="product-info">
+          <h4>{{ p.ProductName }}</h4>
+          <p class="price">{{ formatPrice(p.Price) }}</p>
+          <p class="meta">Model: {{ p.Model }}</p>
+          <p class="meta">Hãng: {{ p.MadeBy }}</p>
+          <p class="meta">Còn: {{ p.Quantity }}</p>
+        </div>
+        @if (isSelected(p)) {
+          <div class="buy-section">
+            <label>Số lượng:</label>
+            <input type="number" [(ngModel)]="buyQty" min="1" [max]="p.Quantity" (click)="$event.stopPropagation()" />
+            <button (click)="addToCart(); $event.stopPropagation()" class="btn-buy">🛒 Mua</button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (products.length === 0) {
+    <div class="no-product">Không tìm thấy sản phẩm nào.</div>
+  }
+</div>

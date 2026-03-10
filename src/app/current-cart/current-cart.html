@@ -1,0 +1,63 @@
+<div class="cart-page">
+  <div class="page-header">
+    <h2>🛒 Giỏ Hàng Hiện Tại</h2>
+    <button (click)="goBack()" class="btn-back">⬅ Quay lại</button>
+  </div>
+
+  @if (message) {
+    <div class="message">{{ message }}</div>
+  }
+
+  @if (cartItems.length === 0) {
+    <div class="empty-cart">
+      <p>🛒 Giỏ hàng trống. Hãy chọn sản phẩm!</p>
+      <button (click)="goShopping()" class="btn-shop">🛍️ Đi mua sắm</button>
+    </div>
+  } @else {
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sản phẩm</th>
+          <th>Đơn giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+          <th>Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of cartItems; track item.ProductId; let i = $index) {
+          <tr (click)="selectRow(item.ProductId)" [class.selected-row]="isRowSelected(item.ProductId)">
+            <td>{{ i + 1 }}</td>
+            <td><strong>{{ item.ProductName }}</strong></td>
+            <td>{{ formatPrice(item.Price) }}</td>
+            <td>
+              <div class="qty-controls">
+                <button (click)="updateQty(item, item.Quantity - 1); $event.stopPropagation()" class="qty-btn">−</button>
+                <input type="number" [(ngModel)]="item.Quantity" min="1" class="qty-input"
+                  (change)="updateQty(item, item.Quantity)"
+                  (click)="$event.stopPropagation()" />
+                <button (click)="updateQty(item, item.Quantity + 1); $event.stopPropagation()" class="qty-btn">+</button>
+              </div>
+            </td>
+            <td class="subtotal">{{ formatPrice(item.SubTotal) }}</td>
+            <td>
+              <button (click)="removeItem(item); $event.stopPropagation()" class="btn-remove">🗑️ Xóa</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="cart-footer">
+      <div class="total-info">
+        <span>Tổng số mặt hàng: <strong>{{ cartItems.length }}</strong></span>
+        <span class="total-price">Tổng tiền: <strong>{{ formatPrice(getTotal()) }}</strong></span>
+      </div>
+      <div class="action-buttons">
+        <button (click)="goShopping()" class="btn-continue">🛍️ Mua thêm</button>
+        <button (click)="checkout()" class="btn-checkout">💳 Thanh Toán</button>
+      </div>
+    </div>
+  }
+</div>

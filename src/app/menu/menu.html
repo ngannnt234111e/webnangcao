@@ -1,0 +1,27 @@
+<nav class="navbar">
+  <div class="brand">🐼 Panda Store</div>
+  <div class="nav-items">
+    <a routerLink="/shopping" routerLinkActive="active-link" class="nav-item">🛍️ Shopping</a>
+
+    <div class="dropdown">
+      <a (click)="toggleCartMenu()" class="nav-item dropdown-toggle" style="user-select: none;">🛒 Cart ▾</a>
+      <div class="dropdown-menu" [class.show]="showCartMenu">
+        <a routerLink="/current-cart" (click)="showCartMenu=false" class="dropdown-item">📋 Current Cart</a>
+        <a routerLink="/revenue-statistics" (click)="showCartMenu=false" class="dropdown-item">📊 Revenue Statistics</a>
+        <a routerLink="/vip-customers" (click)="showCartMenu=false" class="dropdown-item">⭐ VIP Customers</a>
+      </div>
+    </div>
+
+    <a routerLink="/about" routerLinkActive="active-link" class="nav-item">ℹ️ About</a>
+
+    <div class="nav-item welcome-area">
+      @if (isLoggedIn()) {
+        <span class="welcome-text" (click)="logout()" title="Click to logout">
+          👋 Welcome <strong>{{ userName }}</strong> &nbsp;✕
+        </span>
+      } @else {
+        <a (click)="goToLogin()" class="login-btn">🔐 Login</a>
+      }
+    </div>
+  </div>
+</nav>
